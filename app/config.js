@@ -1,12 +1,6 @@
 const package = require("../package.json");
-const allowedOriginsFromEnv = [
-  process.env.ALLOWED_ORIGIN_ONE,
-  process.env.ALLOWED_ORIGIN_TWO,
-  process.env.ALLOWED_ORIGIN_THREE,
-];
 
 module.exports = {
-  ALLOWED_ORIGINS: allowedOriginsFromEnv.filter((origin) => !!origin),
   APP: {
     name: package.name,
   },
@@ -22,4 +16,9 @@ module.exports = {
       BAD_GATEWAY: 502,
     },
   },
+  CORS_WHITELIST: [
+    "http://localhost:3000",
+    "https://spa.libtomsoftware.com",
+    "https://spa.bertlock.net",
+  ],
 };

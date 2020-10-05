@@ -1,10 +1,6 @@
 const CONFIG = require("./config");
 const STATUS_CODE = CONFIG.CONSTANTS.HTTP_CODE;
-const allowedOrigins = [
-  "https://spa.libtomsoftware.com",
-  "https://spa.bertlock.net",
-  ...CONFIG.ALLOWED_ORIGINS,
-];
+const allowedOrigins = CONFIG.CORS_WHITELIST;
 
 function addHeaders(response, origin) {
   response.headers = {
