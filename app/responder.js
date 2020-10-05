@@ -1,8 +1,8 @@
 const CONFIG = require("./config");
 const STATUS_CODE = CONFIG.CONSTANTS.HTTP_CODE;
 const allowedOrigins = [
-  "http://localhost:3000",
-  "http://localhost:3001",
+  "https://spa.libtomsoftware.com",
+  "https://spa.bertlock.net",
   ...CONFIG.ALLOWED_ORIGINS,
 ];
 
@@ -11,59 +11,72 @@ function addHeaders(response, origin) {
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type,Authorization",
     "Content-Type": "application/json",
-    "Access-Control-Allow-Credentials": "true",
+    "Access-Control-Allow-Credentials": true,
   };
 
   if (allowedOrigins.includes(origin)) {
-    response.headers = Object.assign({}, response.headers, {
-      "Access-Control-Allow-Origin": origin,
-    });
+    response.headers = {
+      ...response.headers,
+      ...{
+        "Access-Control-Allow-Origin": origin,
+      },
+    };
   }
+
+  return response;
 }
 
 class Responder {
   rejectUnauthorized(response, origin) {
-    addHeaders(response, origin);
+    response = addHeaders(response, origin);
     response.sendStatus(STATUS_CODE.UNAUTHORIZED);
   }
 
   rejectBadGateway(response, origin) {
-    addHeaders(response, origin);
+    response = addHeaders(response, origin);
     response.sendStatus(STATUS_CODE.BAD_GATEWAY);
   }
 
   rejectConflict(response, origin) {
-    addHeaders(response, origin);
+    response = addHeaders(response, origin);
     response.sendStatus(STATUS_CODE.CONFLICT);
   }
 
   rejectNotFound(response, origin) {
-    addHeaders(response, origin);
+    response = addHeaders(response, origin);
     response.sendStatus(STATUS_CODE.NOT_FOUND);
   }
 
   rejectBadRequest(response, origin) {
-    addHeaders(response, origin);
+    response = addHeaders(response, origin);
     response.sendStatus(STATUS_CODE.BAD_REQUEST);
   }
 
   reject(response, origin, statusCode) {
     response.statusCode = statusCode;
-
-    addHeaders(response, origin);
+    response = addHeaders(response, origin);
 
     response.send();
   }
 
   sendSuccess(response, origin) {
-    addHeaders(response, origin);
+    response = addHeaders(response, origin);
     response.sendStatus(STATUS_CODE.OK);
   }
 
-  send(response, origin, data, statusCode) {
+  send(response, origin, data, statusCode, cookies) {
     response.statusCode = statusCode || STATUS_CODE.OK;
+    response = addHeaders(response, origin);
 
-    addHeaders(response, origin);
+    if (cookies && cookies.length) {
+      cookies.forEach((cookie) => {
+        response.cookie(cookie.name, cookie.value, {
+          maxAge: cookie.maxAge,
+          httpOnly: cookie.isHttpOnly,
+          secure: cookie.isSecure,
+        });
+      });
+    }
 
     response.send(data);
   }
