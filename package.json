@@ -1,5 +1,5 @@
 {
-  "name": "cookie-test-server-one",
+  "name": "mplatform-cookie-test-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/libtomsoftware/cookie-test-server-one.git"
+    "url": "git+https://github.com/libtomsoftware/mplatform-cookie-test-server.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/libtomsoftware/cookie-test-server-one/issues"
+    "url": "https://github.com/libtomsoftware/mplatform-cookie-test-server/issues"
   },
-  "homepage": "https://github.com/libtomsoftware/cookie-test-server-one#readme",
+  "homepage": "https://github.com/libtomsoftware/mplatform-cookie-test-server#readme",
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
