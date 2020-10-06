@@ -1,1 +1,1 @@
-# cookie-test-server-one
+# mplatform-cookie-test-server
