@@ -26,7 +26,7 @@ module.exports = (request, response) => {
     maxAge: 300000,
     isHttpOnly: true,
     isSecure: true,
-    sameSite: "strict",
+    sameSite: "None",
   };
 
   cookiesStorage.add(webcookie);
