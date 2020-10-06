@@ -70,6 +70,7 @@ class Responder {
           maxAge: cookie.maxAge,
           httpOnly: cookie.isHttpOnly,
           secure: cookie.isSecure,
+          sameSite: cookie.sameSite,
         });
       });
     }
