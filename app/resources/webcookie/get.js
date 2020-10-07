@@ -13,11 +13,15 @@ module.exports = (request, response) => {
           name,
           value: request.cookies[name],
           maxAge: 0,
+          expires: new Date(0),
+          sameSite: "None",
+          httpOnly: true,
+          secure: true,
         };
 
         cookiesToExpire.push(cookie);
         cookies.remove(cookie.name);
-        console.log("removing cookie", cookie.name);
+        console.log("removing cookie", cookie);
       }
     });
   }
