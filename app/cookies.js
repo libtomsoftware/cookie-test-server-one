@@ -3,7 +3,6 @@ const webcookies = [];
 
 const generate = (params) => {
   const {
-    maxAge = 300000,
     isHttpOnly = false,
     isSecure = false,
     sameSite = "None",
