@@ -5,8 +5,9 @@ const cookies = require("../../cookies");
 module.exports = (request, response) => {
   const requestCookies = request.cookies || [];
 
+  console.log("request.cookies", request.cookies);
+
   if (requestCookies.length) {
-    console.log("request cookies:", requestCookies);
     console.log("COOKIES STORAGE", cookiesStorage.getAll());
     //cookies.remove(cookieName)
   }
