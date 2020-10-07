@@ -11,7 +11,6 @@ app.use(
     extended: false,
   })
 );
-app.use(express.static("public"));
 app.use(routes());
 
 module.exports = app;
