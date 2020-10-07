@@ -35,7 +35,7 @@ module.exports = function routes() {
     res.cookie(cookie.name, cookie.value, {
       httpOnly: cookie.isHttpOnly,
       secure: cookie.isSecure,
-      sameSite: "none",
+      sameSite: "Strict",
     });
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
