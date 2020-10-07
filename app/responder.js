@@ -65,13 +65,18 @@ class Responder {
     response = addHeaders(response, origin);
 
     if (cookies && cookies.length) {
+      const cookieData = {
+        httpOnly: cookie.isHttpOnly,
+        secure: cookie.isSecure,
+        sameSite: cookie.sameSite,
+      };
+
+      if (cookie.maxAge) {
+        cookieData.maxAge = cookie.maxAge;
+      }
+
       cookies.forEach((cookie) => {
-        response.cookie(cookie.name, cookie.value, {
-          maxAge: cookie.maxAge,
-          httpOnly: cookie.isHttpOnly,
-          secure: cookie.isSecure,
-          sameSite: cookie.sameSite,
-        });
+        response.cookie(cookie.name, cookie.value, cookieData);
       });
     }
 
