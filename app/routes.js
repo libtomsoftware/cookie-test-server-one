@@ -37,7 +37,7 @@ module.exports = function routes() {
       secure: cookie.isSecure,
       sameSite: "None",
     });
-    res.headers = { ...res.headers, ...{ "X-Frame-Options": "Allow" } };
+    res.headers = { ...res.headers, ...{ "X-Frame-Options": "Deny" } };
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
   routes.all("*", (req, res) => responder.rejectNotFound(res));
