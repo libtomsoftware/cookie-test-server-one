@@ -22,7 +22,6 @@ module.exports = (request, response) => {
 
         cookiesToExpire.push(cookie);
         cookies.remove(cookie.name);
-        console.log("removing cookie", cookie);
       }
     });
   }
