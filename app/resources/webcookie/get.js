@@ -15,8 +15,8 @@ module.exports = (request, response) => {
           maxAge: 0,
           expires: new Date(0),
           sameSite: "None",
-          httpOnly: true,
-          secure: true,
+          isHttpOnly: true,
+          isSecure: true,
           domain: "bertlock.net",
         };
 
