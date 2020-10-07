@@ -18,12 +18,12 @@ module.exports = (request, response) => {
     sameSite: "None",
   });
 
-  cookiesStorage.add(webcookie);
+  cookies.add(webcookie);
 
   responder.send(
     response,
     request.get("origin"),
-    data,
+    webcookie,
     CONFIG.CONSTANTS.HTTP_CODE.OK,
     [webcookie]
   );

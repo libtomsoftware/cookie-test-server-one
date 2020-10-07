@@ -17,7 +17,7 @@ module.exports = {
     },
   },
   CORS_WHITELIST: [
-    "http://localhost:3000",
+    "http://localhost:3001",
     "https://spa.libtomsoftware.com",
     "https://spa.bertlock.net",
   ],
