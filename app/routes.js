@@ -28,13 +28,11 @@ module.exports = function routes() {
     const cookie = {
       name: "iam_dummy_" + helpers.generateRandomString(5, false).toLowerCase(),
       value: helpers.generateRandomString(50, true).toLowerCase(),
-      maxAge: 300000,
       isHttpOnly: true,
       isSecure: true,
       sameSite: "None",
     };
     res.cookie(cookie.name, cookie.value, {
-      maxAge: cookie.maxAge,
       httpOnly: cookie.isHttpOnly,
       secure: cookie.isSecure,
       sameSite: cookie.sameSite,

@@ -12,10 +12,10 @@ module.exports = (request, response) => {
   }
 
   const webcookie = cookies.generate({
-    maxAge: 300000,
     isHttpOnly: true,
     isSecure: true,
     sameSite: "None",
+    domain: "bertlock.net",
   });
 
   cookies.add(webcookie);

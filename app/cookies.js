@@ -7,6 +7,7 @@ const generate = (params) => {
     isHttpOnly = false,
     isSecure = false,
     sameSite = "None",
+    domain,
   } = params;
 
   const cookie = {
@@ -17,6 +18,10 @@ const generate = (params) => {
     isSecure,
     sameSite,
   };
+
+  if (domain) {
+    cookie.domain = domain;
+  }
 
   return cookie;
 };
