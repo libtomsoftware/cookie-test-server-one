@@ -6,13 +6,13 @@ const generate = (params) => {
     isHttpOnly = false,
     isSecure = false,
     sameSite = "None",
+    maxAge,
     domain,
   } = params;
 
   const cookie = {
     name: `iam_` + helpers.generateRandomString(5, false).toLowerCase(),
     value: helpers.generateRandomString(50, true).toLowerCase(),
-    maxAge,
     isHttpOnly,
     isSecure,
     sameSite,
@@ -20,6 +20,10 @@ const generate = (params) => {
 
   if (domain) {
     cookie.domain = domain;
+  }
+
+  if (maxAge) {
+    cookie.maxAge = maxAge;
   }
 
   return cookie;
