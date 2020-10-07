@@ -3,13 +3,23 @@ const CONFIG = require("../../config");
 const cookies = require("../../cookies");
 
 module.exports = (request, response) => {
-  const requestCookies = request.cookies || [];
-
-  console.log("request.cookies", request.cookies);
+  const requestCookies = Object.keys(request.cookies) || [];
+  const cookiesToExpire = [];
 
   if (requestCookies.length) {
-    console.log("COOKIES STORAGE", cookiesStorage.getAll());
-    //cookies.remove(cookieName)
+    requestCookies.forEach((name) => {
+      if (name.indexOf("iam_") !== -1) {
+        const cookie = {
+          name,
+          value: request.cookies[name],
+          maxAge: 0,
+        };
+
+        cookiesToExpire.push(cookie);
+        cookies.remove(cookie.name);
+        console.log("removing cookie", cookie.name);
+      }
+    });
   }
 
   const webcookie = cookies.generate({
@@ -26,6 +36,6 @@ module.exports = (request, response) => {
     request.get("origin"),
     webcookie,
     CONFIG.CONSTANTS.HTTP_CODE.OK,
-    [webcookie]
+    [webcookie, ...cookiesToExpire]
   );
 };
