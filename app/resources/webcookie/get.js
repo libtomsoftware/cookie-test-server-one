@@ -1,14 +1,6 @@
-const helpers = require("../../helpers");
 const responder = require("../../responder");
 const CONFIG = require("../../config");
-const cookiesStorage = require("../../cookies");
-
-const generateCookieData = () => {
-  return {
-    name: `iam_` + helpers.generateRandomString(5, false).toLowerCase(),
-    value: helpers.generateRandomString(50, true).toLowerCase(),
-  };
-};
+const cookies = require("../../cookies");
 
 module.exports = (request, response) => {
   const requestCookies = request.cookies || [];
@@ -16,18 +8,15 @@ module.exports = (request, response) => {
   if (requestCookies.length) {
     console.log("request cookies:", requestCookies);
     console.log("COOKIES STORAGE", cookiesStorage.getAll());
-    //cookiesStorage.remove(cookieName)
+    //cookies.remove(cookieName)
   }
 
-  const data = generateCookieData();
-  const webcookie = {
-    name: data.name,
-    value: data.value,
+  const webcookie = cookies.generate({
     maxAge: 300000,
     isHttpOnly: true,
     isSecure: true,
     sameSite: "None",
-  };
+  });
 
   cookiesStorage.add(webcookie);
 
