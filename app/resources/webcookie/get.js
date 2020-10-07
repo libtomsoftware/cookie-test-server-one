@@ -17,6 +17,7 @@ module.exports = (request, response) => {
           sameSite: "None",
           httpOnly: true,
           secure: true,
+          domain: "bertlock.net",
         };
 
         cookiesToExpire.push(cookie);
