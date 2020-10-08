@@ -17,7 +17,7 @@ module.exports = (request, response) => {
           sameSite: "None",
           isHttpOnly: true,
           isSecure: true,
-          domain: "bertlock.net",
+          domain: "libtomsoftware.com",
         };
 
         cookiesToExpire.push(cookie);
@@ -30,7 +30,7 @@ module.exports = (request, response) => {
     isHttpOnly: true,
     isSecure: true,
     sameSite: "None",
-    domain: "bertlock.net",
+    domain: "libtomsoftware.com",
   });
 
   cookies.add(webcookie);
